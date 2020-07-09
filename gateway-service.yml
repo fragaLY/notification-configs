@@ -7,13 +7,13 @@ spring:
       globalcors:
         cors-configurations:
           '[/**]':
-            allowedOrigins: "http://web:8088"
+            allowedOrigins: "http://web:80"
             allowedMethods:
               - POST
               - PUT
       routes:
         - id: notification-service
-          uri: http://web:8080
+          uri: http://producer:8083
           predicates:
             - Path=/api/notifications/**
             - Header=X-CSRF-TOKEN, [0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}
