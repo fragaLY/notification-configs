@@ -31,7 +31,6 @@ resilience4j.timelimiter:
     notification-service:
       timeoutDuration: 250ms
 
-# log specific properties
 logging:
   level:
     org.springframework: info
