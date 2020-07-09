@@ -1,0 +1,39 @@
+server:
+  port: 8082
+
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "http://web:8088"
+            allowedMethods:
+              - POST
+              - PUT
+      routes:
+        - id: notification-service
+          uri: http://web:8080
+          predicates:
+            - Path=/api/notifications/**
+            - Header=X-CSRF-TOKEN, [0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}
+            - Host=**web**
+          filters:
+            - name: NotificationPreFilter
+            - name: NotificationPostFilter
+
+resilience4j.timelimiter:
+  configs:
+    default:
+      timeoutDuration: 1s
+      cancelRunningFuture: false
+  instances:
+    notification-service:
+      timeoutDuration: 250ms
+
+# log specific properties
+logging:
+  level:
+    org.springframework: info
+    org.springframework.cloud: info
+    com.api.gateway.demo: debug
