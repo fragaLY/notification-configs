@@ -35,6 +35,6 @@ resilience4j.timelimiter:
 
 logging:
   level:
-    org.springframework: info
-    org.springframework.cloud: info
+    org.springframework: debug
+    org.springframework.cloud: debug
     com.api.gateway.demo: debug
