@@ -8,7 +8,6 @@ spring:
         cors-configurations:
           '[/**]':
             allowedOrigins:
-              - "http://web"
               - "http://localhost"
             allowedMethods:
               - POST
@@ -19,7 +18,7 @@ spring:
           predicates:
             - Path=/api/notifications/**
             - Header=X-CSRF-TOKEN, [0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}
-            - Host=**localhost**,**web**
+            - Host=**localhost**
           filters:
             - name: NotificationPreFilter
             - name: NotificationPostFilter
