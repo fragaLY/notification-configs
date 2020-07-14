@@ -7,19 +7,17 @@ spring:
       globalcors:
         cors-configurations:
           '[/**]':
-            allowedOrigins:
-              - "http://web"
-              - "http://localhost"
+            allowedOrigins: "http://localhost:80"
             allowedMethods:
               - POST
               - PUT
       routes:
         - id: notification-service
-          uri: http://producer:8083
+          uri: http://localhost:8083
           predicates:
             - Path=/api/notifications/**
             - Header=X-CSRF-TOKEN, [0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}
-            - Host=**localhost**,**web**
+            - Host=**localhost**
           filters:
             - name: NotificationPreFilter
             - name: NotificationPostFilter
