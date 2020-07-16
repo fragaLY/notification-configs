@@ -50,6 +50,6 @@ server:
 
 logging:
   level:
-    org.springframework: debug
-    org.springframework.cloud: debug
-    com.kafka.producer.demo: debug
+    org.springframework: info
+    org.springframework.cloud: info
+    com.kafka.producer.demo: info
