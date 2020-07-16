@@ -15,7 +15,7 @@ spring:
     password: "P@55w0rd"
     hikari:
       minimumIdle: 1
-      maximumPoolSize: 3
+      maximumPoolSize: 10
       autoCommit: false
       connectionTestQuery: SELECT 1
   jpa:
