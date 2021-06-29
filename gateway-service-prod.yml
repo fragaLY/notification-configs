@@ -8,15 +8,11 @@ spring:
     sender:
       type: KAFKA
   kafka:
-    bootstrap-servers: http://localhost:9092, http://localhost:9093, http://localhost:9094
+    bootstrap-servers: http://kafka-prod-1:29092, http://kafka-prod-2:29092, http://kafka-prod-3:29092
     listener:
       missing-topics-fatal: false
   thymeleaf:
     enabled: false
-  cloud:
-    config:
-      uri: http://config-server-prod:8088
-      fail-fast: true
     gateway:
       globalcors:
         cors-configurations:
@@ -29,11 +25,10 @@ spring:
               - OPTIONS
       routes:
         - id: notification-service
-          uri: http://localhost:8083
+          uri: http://producer-prod:8083
           predicates:
             - Path=/api/notifications/**
             - Header=X-CSRF-TOKEN, [0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}
-            - Host=**localhost**
           filters:
             - name: NotificationPreFilter
             - name: NotificationPostFilter
@@ -52,30 +47,3 @@ logging:
     org.springframework: info
     org.springframework.cloud: info
     com.api.gateway.demo: info
-
----
-spring:
-  config:
-    activate:
-      on-profile: prod
-  kafka:
-    bootstrap-servers: http://kafka-prod-1:29092, http://kafka-prod-2:29092, http://kafka-prod-3:29092
-  cloud:
-    gateway:
-      globalcors:
-        cors-configurations:
-          '[/**]':
-            allowedOrigins:
-              - "http://localhost"
-            allowedMethods:
-              - POST
-              - PUT
-      routes:
-        - id: notification-service
-          uri: http://producer-prod:8083
-          predicates:
-            - Path=/api/notifications/**
-            - Header=X-CSRF-TOKEN, [0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}
-          filters:
-            - name: NotificationPreFilter
-            - name: NotificationPostFilter
