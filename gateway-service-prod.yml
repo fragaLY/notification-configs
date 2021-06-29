@@ -5,6 +5,11 @@ spring:
   config:
     activate:
       on-profile: prod
+  zipkin:
+    kafka:
+      topic: zipkin
+    sender:
+      type: KAFKA
   cloud:
     gateway:
       globalcors:

@@ -15,6 +15,11 @@ spring:
       date-time: iso
   lifecycle:
     timeout-per-shutdown-phase: 60s
+  zipkin:
+    kafka:
+      topic: zipkin
+    sender:
+      type: KAFKA
   kafka:
     producer:
       bootstrap-servers: http://kafka-prod-1:29092, http://kafka-prod-2:29092, http://kafka-prod-3:29092

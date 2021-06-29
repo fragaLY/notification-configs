@@ -33,6 +33,11 @@ spring:
     username: "user"
     password: "P@55w0rd"
     schemas: "notification"
+  zipkin:
+    kafka:
+      topic: zipkin
+    sender:
+      type: KAFKA
   kafka:
     consumer:
       bootstrap-servers: http://kafka-prod-1:29092, http://kafka-prod-2:29092, http://kafka-prod-3:29092
