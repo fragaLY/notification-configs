@@ -35,7 +35,7 @@ spring:
     schemas: "notification"
   kafka:
     consumer:
-      bootstrap-servers: http://kafka-prod-1:9092, http://kafka-prod-2:9092, http://kafka-prod-3:9092
+      bootstrap-servers: http://kafka-prod-1:29092, http://kafka-prod-2:29092, http://kafka-prod-3:29092
       key-deserializer: org.apache.kafka.common.serialization.LongDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       group-id: notification-events-listener-group
