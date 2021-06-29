@@ -41,8 +41,8 @@ spring:
     sender:
       type: KAFKA
   kafka:
+    bootstrap-servers: http://kafka-prod-1:29092, http://kafka-prod-2:29092, http://kafka-prod-3:29092
     consumer:
-      bootstrap-servers: http://kafka-prod-1:29092, http://kafka-prod-2:29092, http://kafka-prod-3:29092
       key-deserializer: org.apache.kafka.common.serialization.LongDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       group-id: notification-events-listener-group
@@ -54,6 +54,7 @@ spring:
       default-topic: notification-event
     listener:
       ack-mode: manual
+      missing-topics-fatal: false
 
 server:
   port: 8084
