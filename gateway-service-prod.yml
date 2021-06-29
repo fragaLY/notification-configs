@@ -35,4 +35,4 @@ logging:
   level:
     org.springframework: info
     org.springframework.cloud: info
-    com.api.gateway.demo: debug
+    com.api.gateway.demo: info
