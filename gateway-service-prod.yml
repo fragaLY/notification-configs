@@ -13,10 +13,9 @@ spring:
     sender:
       type: KAFKA
   kafka:
+    bootstrap-servers: http://kafka-prod-1:29092, http://kafka-prod-2:29092, http://kafka-prod-3:29092
     listener:
       missing-topics-fatal: false
-    streams:
-      bootstrap-servers: http://kafka-prod-1:29092, http://kafka-prod-2:29092, http://kafka-prod-3:29092
   cloud:
     gateway:
       globalcors:
