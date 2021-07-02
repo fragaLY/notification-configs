@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: "jdbc:postgresql://postgres-prod:5432/notification-dev"
+    url: "jdbc:postgresql://postgres:5432/notification-dev"
   flyway:
     enabled: true
-    url: "jdbc:postgresql://postgres-prod:5432/notification-dev"
+    url: "jdbc:postgresql://postgres:5432/notification-dev"
   kafka:
-    bootstrap-servers: http://kafka-prod-1:29092, http://kafka-prod-2:29092, http://kafka-prod-3:29092
+    bootstrap-servers: http://kafka-1:29092, http://kafka-2:29092, http://kafka-3:29092
