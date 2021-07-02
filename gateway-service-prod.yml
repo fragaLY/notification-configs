@@ -20,11 +20,3 @@ spring:
           filters:
             - name: NotificationPreFilter
             - name: NotificationPostFilter
-
-logging:
-  level:
-    org.springframework: error
-    org.springframework.cloud: error
-    com.api.gateway.demo: error
-    org.apache.kafka: error
-    org.hibernate.validator: error

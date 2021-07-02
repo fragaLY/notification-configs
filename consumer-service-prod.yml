@@ -6,11 +6,3 @@ spring:
     url: "jdbc:postgresql://postgres-prod:5432/notification-dev"
   kafka:
     bootstrap-servers: http://kafka-prod-1:29092, http://kafka-prod-2:29092, http://kafka-prod-3:29092
-
-logging:
-  level:
-    org.springframework: error
-    org.springframework.cloud: error
-    com.kafka.consumer.demo: error
-    org.apache.kafka: error
-    org.hibernate.validator: error
