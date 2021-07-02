@@ -1,3 +1,0 @@
-spring:
-  kafka:
-    bootstrap-servers: http://kafka-1:29092, http://kafka-2:29092, http://kafka-3:29092
