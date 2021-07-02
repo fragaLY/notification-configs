@@ -1,70 +1,11 @@
 spring:
-  config:
-    activate:
-      on-profile: prod
-  thymeleaf:
-    enabled: false
-  main:
-    lazy-initialization: false
-    web-application-type: servlet
-    banner-mode: off
-  jackson:
-    time-zone: UTC
-    locale: en_US
-  mvc:
-    format:
-      date: iso
-      date-time: iso
-  lifecycle:
-    timeout-per-shutdown-phase: 60s
-  zipkin:
-    kafka:
-      topic: zipkin
-    sender:
-      type: KAFKA
   kafka:
     bootstrap-servers: http://kafka-prod-1:29092, http://kafka-prod-2:29092, http://kafka-prod-3:29092
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.LongSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
-      acks: all
-      retries: 5
-      transaction-id-prefix: kafka-producer
-      properties:
-        enable.idempotence: true
-        compression.type: none
-        max.in.flight.requests.per.connection: 1
-        auto.create.topics.enable: false
-    template:
-      default-topic: notification-event
-    properties:
-      min.insync.replicas: 2
-    listener:
-      ack-mode: manual
-      missing-topics-fatal: false
-
-server:
-  port: 8083
-  shutdown: graceful
-  connection-timeout: 20s
-  undertow:
-    worker-threads: 10
-  servlet:
-    session:
-      timeout: 60m
-      cookie:
-        http-only: true
-    application-display-name: kafka-producer
-  compression:
-    enabled: true
-    min-response-size: 2KB # default value
-    mime-types: "text/html, text/xml, text/plain, text/css, text/javascript, application/javascript, application/json, application/xml, image/jpeg, image/png, application/octet-stream"
-  error:
-    whitelabel:
-      enabled: false
 
 logging:
   level:
-    org.springframework: info
-    org.springframework.cloud: info
-    com.kafka.producer.demo: info
+    org.springframework: error
+    org.springframework.cloud: error
+    com.kafka.consumer.demo: error
+    org.apache.kafka: error
+    org.hibernate.validator: error
