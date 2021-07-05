@@ -20,9 +20,12 @@ spring:
       globalcors:
         corsConfigurations:
           '[/**]':
-            allowedOrigins: "http://localhost:1024"
-            allowedMethods: "*"
-            allowedHeaders: "*"
+            allowedOrigins:
+              - "http://localhost"
+            allowedMethods:
+              - POST
+              - PUT
+              - OPTIONS
       routes:
         - id: notification-service
           uri: http://localhost:8083
