@@ -29,7 +29,6 @@ spring:
           predicates:
             - Path=/api/notifications/**
             - Header=X-CSRF-TOKEN, [0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}
-            - Host=**localhost**
           filters:
             - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
             - name: NotificationPreFilter
