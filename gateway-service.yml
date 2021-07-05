@@ -21,7 +21,7 @@ spring:
         corsConfigurations:
           '[/**]':
             allowedOrigins:
-              - "http://localhost:1024  "
+              - "http://localhost:1024"
             allowedMethods: "*"
             allowedHeaders: "*"
       routes:
