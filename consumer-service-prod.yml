@@ -1,8 +1,77 @@
 spring:
+  main:
+    lazy-initialization: false
+    web-application-type: servlet
+    banner-mode: off
+  thymeleaf:
+    enabled: false
+  lifecycle:
+    timeout-per-shutdown-phase: 60s
+  jackson:
+    time-zone: UTC
+    locale: en_US
   datasource:
-    url: "jdbc:postgresql://postgres:5432/notification-dev"
+    driverClassName: org.postgresql.Driver
+    url: "jdbc:postgresql://localhost:5432/notification-dev"
+    username: "user"
+    password: "P@55w0rd"
+    hikari:
+      minimumIdle: 1
+      maximumPoolSize: 3
+      autoCommit: false
+      connectionTestQuery: SELECT 1
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+    properties:
+      hibernate:
+        default_schema: "notification"
   flyway:
     enabled: true
-    url: "jdbc:postgresql://postgres:5432/notification-dev"
+    locations: "classpath:db/migration"
+    url: "jdbc:postgresql://localhost:5432/notification-dev"
+    username: "user"
+    password: "P@55w0rd"
+    schemas: "notification"
+  zipkin:
+    kafka:
+      topic: zipkin
+    sender:
+      type: KAFKA
   kafka:
-    bootstrap-servers: http://kafka-1:29092, http://kafka-2:29092, http://kafka-3:29092
+    bootstrap-servers: http://localhost:9092, http://localhost:9093, http://localhost:9094
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.LongDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      group-id: notification-events-listener-group
+      enable-auto-commit: false
+      auto-offset-reset: earliest
+      properties:
+        isolation.level: read_committed
+    template:
+      default-topic: notification-event
+    listener:
+      ack-mode: manual
+
+server:
+  port: 8084
+  error:
+    whitelabel:
+      enabled: false
+  shutdown: graceful
+  servlet:
+    session:
+      timeout: 60m
+      cookie:
+        http-only: true
+    application-display-name: kafka-consumer
+  compression:
+    enabled: true
+    mime-types: "text/html, text/xml, text/plain, text/css, text/javascript, application/javascript, application/json, application/xml, image/jpeg, image/png, application/octet-stream"
+
+logging:
+  level:
+    root: info
+    org:
+      springframework:
+        boot: info
+        kafka: info

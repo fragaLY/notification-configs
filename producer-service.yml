@@ -3,6 +3,10 @@ spring:
     lazy-initialization: false
     web-application-type: servlet
     banner-mode: off
+  thymeleaf:
+    enabled: false
+  lifecycle:
+    timeout-per-shutdown-phase: 60s
   jackson:
     time-zone: UTC
     locale: en_US
@@ -10,8 +14,6 @@ spring:
     format:
       date: iso
       date-time: iso
-  lifecycle:
-    timeout-per-shutdown-phase: 60s
   zipkin:
     kafka:
       topic: zipkin
@@ -40,6 +42,9 @@ spring:
 
 server:
   port: 8083
+  error:
+    whitelabel:
+      enabled: false
   shutdown: graceful
   servlet:
     session:
@@ -50,9 +55,6 @@ server:
   compression:
     enabled: true
     mime-types: "text/html, text/xml, text/plain, text/css, text/javascript, application/javascript, application/json, application/xml, image/jpeg, image/png, application/octet-stream"
-  error:
-    whitelabel:
-      enabled: false
 
 logging:
   level:
