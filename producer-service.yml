@@ -15,6 +15,8 @@ spring:
       date: iso
       date-time: iso
   zipkin:
+    kafka:
+      topic: zipkin
     sender:
       type: KAFKA
   kafka:
@@ -30,6 +32,8 @@ spring:
         compression.type: none
         max.in.flight.requests.per.connection: 1
         auto.create.topics.enable: false
+    template:
+      default-topic: notification-event
     properties:
       min.insync.replicas: 2
     listener:
