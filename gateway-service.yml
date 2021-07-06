@@ -1,9 +1,12 @@
 server:
   port: 8082
+  shutdown: graceful
 
 spring:
   main:
     banner-mode: off
+  lifecycle:
+    timeout-per-shutdown-phase: 60s
   zipkin:
     kafka:
       topic: zipkin
@@ -21,7 +24,7 @@ spring:
         corsConfigurations:
           '[/**]':
             allowedOrigins:
-              - "http://localhost"
+              - "*"
             allowedMethods:
               - POST
               - PUT
@@ -36,15 +39,6 @@ spring:
             - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
             - name: NotificationPreFilter
             - name: NotificationPostFilter
-
-resilience4j.timelimiter:
-  configs:
-    default:
-      timeoutDuration: 1s
-      cancelRunningFuture: false
-  instances:
-    notification-service:
-      timeoutDuration: 250ms
 
 logging:
   level:
