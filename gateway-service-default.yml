@@ -41,4 +41,4 @@ spring:
 
 logging:
   level:
-    org.springframework.web.cors: trace
+    org.springframework: trace
