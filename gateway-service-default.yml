@@ -41,6 +41,6 @@ spring:
 
 logging:
   level:
-    org.springframework: info
     org.springframework.cloud: info
     com.api.gateway.demo: info
+    org.springframework.web.cors.reactive: trace
